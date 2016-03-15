@@ -22,6 +22,10 @@ class Brtk
     end
 
     class Layout < Widget
+      def add(other)
+        pack_start other, true, true, 2
+      end
+
       def pack_start(other, *args)
         widget.pack_start other.widget, *args
       end
