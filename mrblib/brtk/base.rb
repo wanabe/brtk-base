@@ -58,7 +58,7 @@ class Brtk
         end
 
         def init
-          @child_names = []
+          @child_names ||= []
         end
 
         def inherited(klass)
