@@ -1,7 +1,7 @@
 class Brtk
   module Base
     class Widget
-      attr_accessor :widget
+      attr_accessor :widget, :brtk
 
       def initialize(brtk)
         @brtk = brtk
