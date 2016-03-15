@@ -35,6 +35,10 @@ class Brtk
       def uri=(uri)
       end
 
+      def send_uri(uri)
+        brtk.send_uri uri, {:except => [self]}
+      end
+
       class << self
         attr_reader :widget_klass, :widget_args, :child_names
         def widget(widget_klass, *widget_args)
