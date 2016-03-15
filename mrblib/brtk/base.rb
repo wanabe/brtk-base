@@ -9,12 +9,7 @@ class Brtk
         @widget = self.class.widget_klass.new(*self.class.widget_args)
       end
 
-      def children
-        @children ||= []
-      end
-
       def add(other)
-        children << other
         widget.add other.widget
       end
 
@@ -28,7 +23,6 @@ class Brtk
 
     class Layout < Widget
       def pack_start(other, *args)
-        children << other
         widget.pack_start other.widget, *args
       end
     end
