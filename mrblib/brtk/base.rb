@@ -11,6 +11,7 @@ class Brtk
           add child_class.new(brtk)
         end
         setup
+        define_signal_handlers
       end
 
       def add(other)
@@ -18,6 +19,14 @@ class Brtk
       end
 
       def setup
+      end
+
+      def define_signal_handlers
+        self.class.signal_handlers.each do |signal, meth|
+          widget.signal_connect(signal) do |*args|
+            __send__ meth, *args
+          end
+        end
       end
 
       def run
@@ -42,12 +51,22 @@ class Brtk
           end
         end
 
+        def init
+          @child_names = []
+        end
+
         def inherited(klass)
           klass.init
         end
 
-        def init
-          @child_names = []
+        def signal_handlers
+          @signal_handlers ||= instance_methods.each_with_object({}) do |method_name, table|
+            name = method_name.to_s
+            signal = name[/^on_(\w*)/, 1]
+            if signal
+              table[signal] = method_name
+            end
+          end
         end
       end
     end
