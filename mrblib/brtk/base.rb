@@ -70,6 +70,7 @@ class Brtk
             name = method_name.to_s
             signal = name[/^on_(\w*)/, 1]
             if signal
+              signal.gsub! "_", "-"
               table[signal] = method_name
             end
           end
