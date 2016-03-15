@@ -79,11 +79,23 @@ class Brtk
 
     class Layout < Widget
       def add(other)
-        pack_start other, true, true, 2
+        pack_start other, expand?(other), fill?(other), padding(other)
       end
 
       def pack_start(other, *args)
         widget.pack_start other.widget, *args
+      end
+
+      def expand?(other)
+        true
+      end
+
+      def fill?(other)
+        true
+      end
+
+      def padding(other)
+        2
       end
     end
   end
