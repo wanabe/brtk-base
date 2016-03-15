@@ -3,6 +3,11 @@ class Brtk
     class Widget
       attr_accessor :widget
 
+      def initialize(brtk)
+        @brtk = brtk
+        @brtk[self.class] = self
+      end
+
       def children
         @children ||= []
       end
