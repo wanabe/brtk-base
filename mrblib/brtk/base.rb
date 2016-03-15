@@ -6,6 +6,7 @@ class Brtk
       def initialize(brtk)
         @brtk = brtk
         @brtk[self.class] = self
+        @widget = self.class.widget_klass.new(*self.class.widget_args)
       end
 
       def children
@@ -17,8 +18,11 @@ class Brtk
         widget.add other.widget
       end
 
-      def setup(klass, *args)
-        @widget = klass.new(*args)
+      class << self
+        attr_reader :widget_klass, :widget_args
+        def widget(widget_klass, *widget_args)
+          @widget_klass, @widget_args = widget_klass, widget_args
+        end
       end
     end
 
