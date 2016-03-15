@@ -20,6 +20,9 @@ class Brtk
       def setup
       end
 
+      def run
+      end
+
       class << self
         attr_reader :widget_klass, :widget_args, :child_names
         def widget(widget_klass, *widget_args)
