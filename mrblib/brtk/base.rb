@@ -32,6 +32,9 @@ class Brtk
       def run
       end
 
+      def uri=(uri)
+      end
+
       class << self
         attr_reader :widget_klass, :widget_args, :child_names
         def widget(widget_klass, *widget_args)
