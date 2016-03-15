@@ -38,9 +38,15 @@ class Brtk
           @widget_klass, @widget_args = widget_klass, widget_args
         end
 
-        def child(name)
+        def child(name, opt = {})
           return if @child_names.include? name
-          @child_names << name
+          before = opt[:before]
+          if before
+            index = @child_names.index(before)
+          else
+            index = @child_names.length
+          end
+          @child_names[index, 0] = name
         end
 
         def child_classes
